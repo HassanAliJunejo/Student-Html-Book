@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML for Kids - School Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Segoe UI', serif;
+            background: linear-gradient(135deg, #001a4d 0%, #003d99 100%);
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .book-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .book-header {
+            display: none;
+        }
+
+        .book-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+
+        .book-header .subtitle {
+            display: none;
+        }
+
+        .author {
+            display: none;
+        }
+
+        .book-content {
+            padding: 60px 50px;
+        }
+
+        .chapter {
+            margin-bottom: 80px;
+            page-break-after: always;
+        }
+
+        .chapter h2 {
+            font-size: 2em;
+            color: #FF5722;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #FF5722;
+            display: flex;
+            align-items: center;
+        }
+
+        .chapter-number {
+            background: #FF5722;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .chapter h3 {
+            font-size: 1.4em;
+            color: #003d99;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .chapter p {
+            text-align: justify;
+            margin-bottom: 18px;
+            color: #333;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .chapter ul, .chapter ol {
+            margin-left: 30px;
+            margin-bottom: 18px;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .code-block {
+            background: #e3f2fd;
+            border-left: 5px solid #FF5722;
+            padding: 18px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            line-height: 1.7;
+            display: block;
+            white-space: pre-wrap;
+        }
+
+        .highlight {
+            background: #FFE5B4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .note-box {
+            background: #FBE9E7;
+            border-left: 5px solid #FF5722;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .note-box strong {
+            color: #FF5722;
+        }
+
+        .table-of-contents {
+            background: #e3f2fd;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .table-of-contents h2 {
+            color: #003d99;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .toc-item {
+            margin: 12px 0;
+            padding-left: 20px;
+            border-left: 3px solid #FF5722;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .book-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        .book-table th {
+            background: #003d99;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .book-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .book-table tr:nth-child(even) {
+            background: #e3f2fd;
+        }
+
+        .book-footer {
+            background: #f5f5f5;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 2px solid #ddd;
+            font-size: 0.95em;
+        }
+
+        .page-number {
+            text-align: right;
+            margin-top: 40px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .chapter {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .book-content {
+                padding: 30px 20px;
+            }
+            .book-header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <!-- Cover Page -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 120px 40px; text-align: center; border-bottom: 5px solid #FF5722;">
+            <div style="font-size: 1.2em; letter-spacing: 3px; margin-bottom: 40px; opacity: 0.9;">EMPOWERMENT TECHNOLOGY</div>
+            
+            <div style="font-size: 3.5em; font-weight: bold; margin-bottom: 60px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 2px;">
+                <span style="background: #FF5722; padding: 10px 20px; display: inline-block;">INTRODUCTION TO</span>
+            </div>
+            
+            <h1 style="font-size: 4em; margin-bottom: 30px; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); font-weight: bold;">
+                HTML 5
+            </h1>
+            
+            <div style="font-size: 1.3em; margin-bottom: 80px; opacity: 0.95;">Author: Hassan Ali Junejo</div>
+            
+            <div style="font-size: 1.1em; opacity: 0.9;">1st–10th Class Students</div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="table-of-contents">
+            <h2>📑 Table of Contents</h2>
+            <div class="toc-item"><span class="emoji">1️⃣</span> What is HTML? (Bacho ki language me story)</div>
+            <div class="toc-item"><span class="emoji">2️⃣</span> HTML Tags Kya Hote Hain?</div>
+            <div class="toc-item"><span class="emoji">3️⃣</span> Important Basic Tags</div>
+            <div class="toc-item"><span class="emoji">4️⃣</span> HTML Page Ka Structure</div>
+            <div class="toc-item"><span class="emoji">5️⃣</span> Lists (UL, OL, LI)</div>
+            <div class="toc-item"><span class="emoji">6️⃣</span> Tables & Forms</div>
+            <div class="toc-item"><span class="emoji">7️⃣</span> Practice Activities</div>
+            <div class="toc-item"><span class="emoji">8️⃣</span> Conclusion</div>
+        </div>
+
+        <!-- Content -->
+        <div class="book-content">
+            <!-- Chapter 1 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">1</span>HTML Kya Hoti Hai?</h2>
+                
+                <p>HTML ek language hai jisse hum websites banate hain. Jis tarah LEGO blocks se ghar banta hai, waise hi HTML tags se webpage banta hai.</p>
+
+                <h3>HTML ka Full Form:</h3>
+                <ul>
+                    <li><strong>H</strong> — Hyper</li>
+                    <li><strong>T</strong> — Text</li>
+                    <li><strong>M</strong> — Markup</li>
+                    <li><strong>L</strong> — Language</li>
+                </ul>
+
+                <p>HTML website ka <span class="highlight">skeleton</span> hota hai — ye batata hai ke heading kahan hogi, text kahan hoga, picture kahan ayegi.</p>
+
+                <div class="note-box">
+                    <strong>🧒 Bacho ke liye yaad rakhne ka tareeqa:</strong> HTML = Website ka blueprint jo baata hai kya kahan hona chahiye!
+                </div>
+
+                <div class="page-number">— Page 1 —</div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">2</span>HTML Tags Kya Hote Hain?</h2>
+                
+                <p>Tags special words hote hain jo angle brackets <span class="highlight">&lt; &gt;</span> ke andar likhe jate hain.</p>
+
+                <h3>Example Tag:</h3>
+                <div class="code-block">
+                    <code>&lt;p&gt;Yeh mera pehla paragraph hai!&lt;/p&gt;</code>
+                </div>
+
+                <ul>
+                    <li><span class="highlight">&lt;p&gt;</span> — start tag</li>
+                    <li><span class="highlight">&lt;/p&gt;</span> — end tag</li>
+                    <li>Beech ka text — paragraph</li>
+                </ul>
+
+                <p>Tag bilkul magic words ki tarah kaam karte hain! Jab aap tag lagate ho to computer samajh jata hai ke kya banana hai.</p>
+
+                <div class="note-box">
+                    <strong>💡 Yaad Rakho:</strong> Har tag ka opening aur closing hota hai — bilkul jaise door khul-band hota hai!
+                </div>
+
+                <div class="page-number">— Page 2 —</div>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">3</span>Important Basic Tags</h2>
+                
+                <h3>1. &lt;h1&gt; — Big Heading</h3>
+                <p>Jaise kitaab me chapter ka naam bada hota hai, waise website me <span class="highlight">&lt;h1&gt;</span> badi heading hoti hai.</p>
+                <div class="code-block">
+                    <code>&lt;h1&gt;Welcome!&lt;/h1&gt;</code>
+                </div>
+
+                <h3>2. &lt;p&gt; — Paragraph</h3>
+                <p>Lambe sentences ka group paragraph hota hai.</p>
+                <div class="code-block">
+                    <code>&lt;p&gt;Mera naam Hassan hai.&lt;/p&gt;</code>
+                </div>
+
+                <h3>3. &lt;img&gt; — Image</h3>
+                <p>Website me tasveer lagane ke liye.</p>
+                <div class="code-block">
+                    <code>&lt;img src="cat.png" alt="Cute Cat"&gt;</code>
+                </div>
+
+                <h3>4. &lt;a&gt; — Link</h3>
+                <p>Dusre page par jane ke liye.</p>
+                <div class="code-block">
+                    <code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</code>
+                </div>
+
+                <div class="page-number">— Page 3 —</div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">4</span>HTML Page Ka Structure</h2>
+                
+                <p>Har HTML page ek basic structure follow karta hai.</p>
+
+                <div class="code-block">
+                    <code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Meri Pehli Website&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Assalam o Alaikum!&lt;/h1&gt;
+    &lt;p&gt;Yeh mera pehla webpage hai.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+                </div>
+
+                <p>Ye structure bilkul waise hai jaise school notebook me:</p>
+                <ul>
+                    <li>Cover page</li>
+                    <li>Heading</li>
+                    <li>Content</li>
+                </ul>
+
+                <div class="note-box">
+                    <strong>🏫 School Comparison:</strong>
+                    <ul>
+                        <li>&lt;head&gt; = Notebook ka cover</li>
+                        <li>&lt;body&gt; = Notebook ki pages</li>
+                        <li>&lt;title&gt; = Notebook ka naam</li>
+                    </ul>
+                </div>
+
+                <div class="page-number">— Page 4 —</div>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">5</span>Lists (UL, OL, LI)</h2>
+                
+                <h3>Lists Kya Hoti Hain?</h3>
+                <p>List ka matlab hota hai <span class="highlight">cheezon ki ginti ya points ki list</span>. Jaise school me:</p>
+                <ul>
+                    <li>Bag me kya kya hona chahiye</li>
+                    <li>Lunch box me kya hai</li>
+                    <li>Homework ke tasks</li>
+                </ul>
+
+                <h3>🟣 1. UL — Unordered List (Bullet Points)</h3>
+                <p>UL ka matlab hota hai <span class="highlight">Unordered List</span> — yani jisme numbering nahi hoti, bas bullet points hotay hain.</p>
+                <div class="code-block">
+                    <code>&lt;ul&gt;
+  &lt;li&gt;Pencil&lt;/li&gt;
+  &lt;li&gt;Rubber&lt;/li&gt;
+  &lt;li&gt;Sharpener&lt;/li&gt;
+&lt;/ul&gt;</code>
+                </div>
+
+                <h3>🟢 2. OL — Ordered List (Numbering)</h3>
+                <p>OL ka matlab hota hai <span class="highlight">Ordered List</span> — yani 1, 2, 3 ki form me ginti wali list.</p>
+                <div class="code-block">
+                    <code>&lt;ol&gt;
+  &lt;li&gt;Brush karna&lt;/li&gt;
+  &lt;li&gt;Nashta karna&lt;/li&gt;
+  &lt;li&gt;School jana&lt;/li&gt;
+&lt;/ol&gt;</code>
+                </div>
+
+                <h3>🟡 3. LI — List Item</h3>
+                <p>LI ka matlab hota hai <span class="highlight">List Item</span>. Yani list ke andar jo bhi point likha jata hai, woh &lt;li&gt; ke andar hota hai.</p>
+
+                <div class="note-box">
+                    <strong>🧒 Yaad Rakho:</strong>
+                    <ul>
+                        <li>UL = "Unginti" → jisme numbers nahi hotay</li>
+                        <li>OL = "Order" → sab kuch number ke order me</li>
+                        <li>LI = List ka chota hero!</li>
+                    </ul>
+                </div>
+
+                <div class="page-number">— Page 5 —</div>
+            </div>
+
+            <!-- Chapter 6 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">6</span>Tables & Forms</h2>
+                
+                <h3>PART 1 — TABLES (School Ki Copy Jaise!)</h3>
+                <p>Table woh hoti hai jisme <span class="highlight">rows</span> aur <span class="highlight">columns</span> hote hain. Bilkul waise hi jaise school me:</p>
+                <ul>
+                    <li>Attendance register</li>
+                    <li>Marks sheet</li>
+                    <li>Timetable</li>
+                </ul>
+
+                <h3>Table Tags:</h3>
+                <ul>
+                    <li><span class="highlight">&lt;table&gt;</span> — Table start karna</li>
+                    <li><span class="highlight">&lt;tr&gt;</span> — Table Row (horizontal line)</li>
+                    <li><span class="highlight">&lt;th&gt;</span> — Table Heading (bold)</li>
+                    <li><span class="highlight">&lt;td&gt;</span> — Table Data (normal cell)</li>
+                </ul>
+
+                <h3>Example Table:</h3>
+                <div class="code-block">
+                    <code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Class&lt;/th&gt;
+    &lt;th&gt;Marks&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Ali&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+    &lt;td&gt;90&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Ayesha&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+    &lt;td&gt;95&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code>
+                </div>
+
+                <table class="book-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Marks</th>
+                    </tr>
+                    <tr>
+                        <td>Ali</td>
+                        <td>2</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>Ayesha</td>
+                        <td>3</td>
+                        <td>95</td>
+                    </tr>
+                </table>
+
+                <h3>PART 2 — FORMS (Notebook Ke Blanks Jese!)</h3>
+                <p>Form woh hota hai jisme users se information li jati hai. Bilkul waise hi jaise school ke admission forms, jisme blanks hotay hain.</p>
+
+                <h3>Form Tags:</h3>
+                <ul>
+                    <li><span class="highlight">&lt;form&gt;</span> — Form start karna</li>
+                    <li><span class="highlight">&lt;label&gt;</span> — Field ka naam</li>
+                    <li><span class="highlight">&lt;input&gt;</span> — Text box</li>
+                    <li><span class="highlight">&lt;textarea&gt;</span> — Bada paragraph box</li>
+                    <li><span class="highlight">&lt;button&gt;</span> — Click karne wala button</li>
+                </ul>
+
+                <h3>Example Easy Form:</h3>
+                <div class="code-block">
+                    <code>&lt;form&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input type="text" /&gt;
+
+  &lt;label&gt;Class:&lt;/label&gt;
+  &lt;input type="number" /&gt;
+
+  &lt;label&gt;Message:&lt;/label&gt;
+  &lt;textarea&gt;&lt;/textarea&gt;
+
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code>
+                </div>
+
+                <div class="note-box">
+                    <strong>🧒 Cute Explanation:</strong>
+                    <ul>
+                        <li>Form = School form jisme blanks hotay hain</li>
+                        <li>Input = Blank line jahan student name likhta hai</li>
+                        <li>Label = "Name", "Class" jese headings</li>
+                        <li>Button = "Submit" jese final wala button</li>
+                    </ul>
+                </div>
+
+                <div class="page-number">— Page 6 —</div>
+            </div>
+
+            <!-- Chapter 7 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">7</span>Practice Activities</h2>
+                
+                <h3>✏️ Activity 1: Headings</h3>
+                <p>Ye headings likho:</p>
+                <ol>
+                    <li>My School</li>
+                    <li>My Best Friend</li>
+                    <li>My Hobby</li>
+                </ol>
+
+                <h3>✏️ Activity 2: Make a Shopping List</h3>
+                <p>HTML me UL list banaye:</p>
+                <ul>
+                    <li>Mango</li>
+                    <li>Milk</li>
+                    <li>Chips</li>
+                </ul>
+
+                <h3>✏️ Activity 3: Design a Table</h3>
+                <p>3 students ka marks table banaye.</p>
+
+                <h3>✏️ Activity 4: Create a Simple Form</h3>
+                <p>Form banaye jisme:</p>
+                <ul>
+                    <li>Name field</li>
+                    <li>Class field</li>
+                    <li>Submit button</li>
+                </ul>
+
+                <h3>✏️ Activity 5: Revision Box</h3>
+                <div class="note-box">
+                    <strong>📝 Yaad Rakho:</strong>
+                    <ul>
+                        <li>HTML = website ki language</li>
+                        <li>Tag = magic word jisse computer ko samajh aata hai</li>
+                        <li>&lt;h1&gt; = big heading</li>
+                        <li>&lt;p&gt; = paragraph</li>
+                        <li>&lt;img&gt; = picture</li>
+                        <li>&lt;a&gt; = link</li>
+                        <li>&lt;ul&gt; = bullet list</li>
+                        <li>&lt;ol&gt; = number list</li>
+                        <li>&lt;table&gt; = data table</li>
+                        <li>&lt;form&gt; = information form</li>
+                    </ul>
+                </div>
+
+                <div class="page-number">— Page 7 —</div>
+            </div>
+
+            <!-- Chapter 8 -->
+            <div class="chapter">
+                <h2><span class="chapter-number">8</span>Conclusion — HTML Ki Duniya Ka Safar</h2>
+                
+                <p>HTML ek zabardast building-block language hai jise seekh kar har student apni website bana sakta hai. Is book ne bilkul basic level se — jaise school ke bachon ko sikhaya jata hai — HTML ke sab tags ko asaan zubaan, cute examples, aur clear illustrations ke saath samjhaya.</p>
+
+                <h3>Iss Safar Ke Dauran Aap Ne Seekha:</h3>
+                <ul>
+                    <li>HTML kya hoti hai aur kyun use hoti hai 🧱</li>
+                    <li>Web page ka skeleton kaise banta hai 🦴</li>
+                    <li>Headings, Paragraphs, Links, Images ka use 🌐</li>
+                    <li>Lists ko shopping-list jese examples se 📝</li>
+                    <li>Tables ko school ki attendance sheet ki tarah 📊</li>
+                    <li>Forms ko notebook ke blanks ki tarah ✍️</li>
+                    <li>Aur layout/design ke advanced ideas bhi 💡</li>
+                </ul>
+
+                <h3>⭐ Aap Ab Kya Kar Sakte Ho?</h3>
+                <ul>
+                    <li>Apni choti personal website bana sakte ho</li>
+                    <li>School ka project complete kar sakte ho</li>
+                    <li>Apne doston ko HTML sikha sakte ho</li>
+                    <li>Future me CSS & JavaScript seekhne ka strong base ban gaya hai</li>
+                </ul>
+
+                <h3>🎯 Final Message</h3>
+                <p>HTML mushkil nahi hai. Agar kisi ko drawing, colouring, games ya puzzles pasand hain — to HTML un sab ka digital version hai. Aap blocks ko jor kar pages banate ho, colors lagate ho, pictures add karte ho.</p>
+
+                <div class="note-box">
+                    <strong>✨ Sab Se Important Baat:</strong><br>
+                    <em>"Jo bacha HTML seekh leta hai, woh future me kuch bhi seekh sakta hai."</em>
+                </div>
+
+                <h3>🌟 Shabash! Aapne Puri Kitab Complete Kar Li!</h3>
+                <p>Ab aap ready ho jao apni website banane ke liye. Khush rehna aur seekhte rahna! 🚀</p>
+
+                <div class="page-number">— Page 8 —</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="book-footer">
+            <p>© 2025 HTML Learning Guide for Kids | Basic to Advanced</p>
+            <p>Author: Hassan Ali Junejo | School Edition</p>
+            <p>Last Updated: November 2025</p>
+        </div>
+    </div>
+</body>
+</html>
